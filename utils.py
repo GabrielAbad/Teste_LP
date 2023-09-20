@@ -87,18 +87,56 @@ def time_delta(data_1:str,data_2:str)-> int:
     return int_delta
 
 def extract_lines(s_path:str)->list:
+    """
+   Extrai linhas de um arquivo de texto e retorna as duas primeiras linhas em uma lista.
+
+   Parâmetros:
+   caminho (str): O caminho para o arquivo de texto.
+
+   Retorna:
+   list: Uma lista contendo as duas primeiras linhas do arquivo de texto.
+
+   Exemplo:
+   Se o arquivo de texto no caminho fornecido contiver as seguintes linhas:
+   Linha 1: Esta é a primeira linha.
+   Linha 2: Esta é a segunda linha.
+   Linha 3: Esta é a terceira linha.
+
+   A função retornará ['Esta é a primeira linha.', 'Esta é a segunda linha.'] como uma lista.
+   """
     l_file = []
     l_file2 = []
-    with open('input_text.txt') as f:
+    with open(s_path) as f:
         for line in f.readlines():
             l_file.append(line)
     l_file2 = l_file[1]
     l_file = l_file[0]
     return (l_file,l_file2)
 
-l_file = extract_lines('input_text.txt')[0]
-l_file2 = extract_lines('input_text.txt')[1]
-print(l_file)
+
+
+def time_delta_txt(path:str)->int:
+    """
+    Calcula a diferença de tempo (delta) entre dois carimbos de data/hora extraídos de um arquivo de texto.
+
+    Parâmetros:
+    caminho (str): O caminho para o arquivo de texto que contém os carimbos de data/hora. O arquivo deve conter
+                 pelo menos duas linhas com carimbos de data/hora em um formato adequado.
+
+    Retorna:
+    int: A diferença de tempo (delta) entre os dois carimbos de data/hora em segundos.
+
+    Exemplo:
+    Se o arquivo de texto no caminho fornecido contiver as seguintes linhas:
+    2023-09-20 10:00:00
+    2023-09-20 10:30:00
+
+    A função retornará 1800, que é a diferença de tempo entre os dois carimbos de data/hora (30 minutos em segundos).
+    """
+    data1 = extract_lines(path)
+    data2 = extract_lines(path)
+    delta = time_delta(data1,data2)
+    return delta
 
 
 if __name__ == "__main__":
