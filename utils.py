@@ -133,8 +133,8 @@ def time_delta_txt(path:str)->int:
 
     A função retornará 1800, que é a diferença de tempo entre os dois carimbos de data/hora (30 minutos em segundos).
     """
-    data1 = extract_lines(path)
-    data2 = extract_lines(path)
+    data1 = extract_lines(path)[0]
+    data2 = extract_lines(path)[1]
     delta = time_delta(data1,data2)
     return delta
 
